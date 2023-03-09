@@ -6,8 +6,14 @@ services:
     - "8000:8000"
     volumes:
       - ./demo:/usr/lib/python3.10/site-packages/demo/
-  db:
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_HOSTNAME=database
+    links:
+      - database
+  database:
     image:
       willnx/demo-app-db
     environment:
-      - POSTGRES_PASSWORD=demo
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
