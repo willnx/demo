@@ -1,0 +1,13 @@
+services:
+  app:
+    image:
+      willnx/demo-app
+    ports:
+    - "8000:8000"
+    volumes:
+      - ./demo:/usr/lib/python3.10/site-packages/demo/
+  db:
+    image:
+      willnx/demo-app-db
+    environment:
+      - POSTGRES_PASSWORD=demo
