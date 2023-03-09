@@ -2,14 +2,14 @@ import atexit
 
 import flask
 import psycopg2
-from lib.database import Database
-from pages.login import login_page
+from database.base import Database
+from pages import login
 from settings import settings
 
 
 def make_app():
     app = flask.Flask(__name__)
-    app.register_blueprint(login_page)
+    app.register_blueprint(login.page)
     db = Database(
         min_conn=settings.DB_MIN_CONN,
         max_conn=settings.DB_MAX_CONN,

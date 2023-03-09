@@ -1,7 +1,8 @@
 import atexit
 import contextlib
+import functools
 
-from psycopg2 import pool
+from psycopg2 import extras, pool
 
 
 class Database:
@@ -23,11 +24,18 @@ class Database:
         Database.APP = app
         atexit.register(self.pool.closeall)
 
-    @classmethod
-    @contextlib.contextmanager
-    def get_conn(cls):
-        if cls.APP is None:
+
+def get_conn(func):
+    @functools.wraps(func)
+    def inner(*args, **kwargs):
+        if Database.APP is None:
             raise RuntimeError("Application not initialized")
-        conn = cls.APP.config["db_conn_pool"].getconn()
-        yield conn
-        cls.APP.config["db_conn_pool"].putconn(conn)
+        conn = Database.APP.config["db_conn_pool"].getconn()
+        with conn.cursor(cursor_factory=extras.DictCursor) as cursor:
+            try:
+                resp = func(cursor, *args, **kwargs)
+            finally:
+                Database.APP.config["db_conn_pool"].putconn(conn)
+        return resp
+
+    return inner
