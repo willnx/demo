@@ -14,5 +14,6 @@ setup(
         "ujson",
         "cryptography",
         "psycopg2",
+        "gevent",
     ],
 )
