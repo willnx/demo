@@ -1,8 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div class="container">
-        <h1>Username</h1>
-        <h1>Password</h1>
-    </div>
+        <div>
+            <h1>Welcome to this demo!</h1>
+        </div>
+        <form id="login" class="pure-form" method="post">
+            <fieldset>
+                <legend>Please sign in to begin.</legend>
+                <input id="name" name="name" type="text" placeholder="Username" required/>
+                <input id="password" name="password" type="password" placeholder="Password" required/>
+                <button form="login" type="submit" class="pure-button pure-button-primary">Sign in</button>
+            </fieldset>
+        </form>
 {% endblock %}

@@ -25,6 +25,7 @@ test: uninstall install
 images: build
 	docker build -t willnx/demo-app .
 	docker build -t willnx/demo-app-db ./database
+	docker build -t willnx/demo-app-proxy ./proxy
 
 up: clean
 	docker-compose up --abort-on-container-exit

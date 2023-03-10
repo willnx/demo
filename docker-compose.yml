@@ -1,4 +1,9 @@
 services:
+  proxy:
+    image: willnx/demo-app-proxy
+    ports:
+    - "80:80"
+    - "443:443"
   app:
     image:
       willnx/demo-app

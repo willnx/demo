@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 from database import auth
 
@@ -14,5 +14,6 @@ def get_login_page():
 
 @page.route("/", methods=["POST"])
 def try_login():
-    if not auth.user_ok(username="foo", password="ilovecatz"):
+    name, password = request.form["name"], request.form["password"]
+    if not auth.user_ok(username=name, password=password):
         return render_template("login.html"), 401
