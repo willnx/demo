@@ -1,7 +1,7 @@
 from flask import Blueprint, make_response, redirect, render_template, request
-from logs import get_logger
 
-from database import auth
+from demo.database import auth
+from demo.logs import get_logger
 
 page = Blueprint("login", __name__, url_prefix="/login")
 log = get_logger(__name__)

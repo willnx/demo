@@ -4,4 +4,4 @@ RUN apk update && apk upgrade && apk add python3 python3-dev build-base linux-he
 COPY ./dist/*.whl .
 RUN pip install ./*.whl
 WORKDIR /usr/lib/python3.10/site-packages/demo
-CMD gunicorn -c wsgi.py demo:app
+CMD gunicorn -c wsgi.py 'demo.app:make_app()'

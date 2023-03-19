@@ -1,15 +1,39 @@
 import atexit
 import contextlib
 import functools
+import time
 
 from psycopg2 import extras, pool
+
+from demo.logs import get_logger
+
+log = get_logger(__name__)
 
 
 class Database:
     APP = None
 
     def __init__(self, username, password, hostname, db_name, port, min_conn, max_conn):
-        self.pool = pool.ThreadedConnectionPool(
+        self.pool = None
+        error = None
+        for _ in range(10):
+            try:
+                self.pool = self.get_connection_pool(
+                    username, password, hostname, db_name, port, min_conn, max_conn
+                )
+            except Exception as doh:
+                error = doh
+                time.sleep(1)
+            else:
+                break
+        if self.pool is None:
+            log.error("Failed to make DB connection pool")
+            raise error
+
+    def get_connection_pool(
+        self, username, password, hostname, db_name, port, min_conn, max_conn
+    ):
+        return pool.ThreadedConnectionPool(
             min_conn,
             max_conn,
             host=hostname,

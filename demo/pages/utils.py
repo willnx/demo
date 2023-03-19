@@ -1,5 +1,6 @@
-from database.auth import decode_token
 from flask import make_response, redirect, request
+
+from demo.database.auth import decode_token
 
 
 def require_session(func):

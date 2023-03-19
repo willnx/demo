@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
-from logs import get_logger
+
+from demo.logs import get_logger
 
 from .utils import require_session
 

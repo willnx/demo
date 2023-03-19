@@ -13,7 +13,7 @@ setup(
         "gunicorn",
         "ujson",
         "cryptography",
-        "psycopg2",
+        "psycopg2-binary",
         "gevent",
     ],
 )

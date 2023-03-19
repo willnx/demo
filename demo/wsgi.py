@@ -1,4 +1,5 @@
-threads = 4
-worker_class = "sync"
+threads = 400
+worker_class = "gevent"
 bind = "0.0.0.0:8000"
 accesslog = "-"
+keepalive = 100

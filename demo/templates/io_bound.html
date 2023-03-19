@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% include 'navigation.html' %}
+    <h1>I/O Bound workload</h1>
+    <p>The workload shown via this page is I/O bound.<br/>
+       The server was I/O blocked for {{ blocked }} milliseconds reading from a socket <br/>
+       before it could return this page to {{ username }}.
+    </p>
+{% endblock %}

@@ -6,6 +6,8 @@ services:
     - "443:443"
     volumes:
     - ./proxy/static:/var/lib/nginx/static/
+    sysctls:
+      - net.core.somaxconn=4096
   app:
     image:
       willnx/demo-app

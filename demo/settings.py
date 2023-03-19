@@ -19,7 +19,7 @@ DEFINED = {
     "DB_PORT": environ.get("DB_PORT", "5432"),
     "DB_DATABASE": environ.get("DB_DATABASE", ""),
     "DB_MIN_CONN": int(environ.get("DB_MIN_CONN", 1)),
-    "DB_MAX_CONN": int(environ.get("DB_MAX_CONN", 10)),
+    "DB_MAX_CONN": int(environ.get("DB_MAX_CONN", 30000)),
     "JWT_ALGORITHM": "HS256",
     "SESSION_LENGHT": 28800,  # 8 hours
     "JWT_SECRET": get_token_secret(),

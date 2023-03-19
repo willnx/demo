@@ -1,7 +1,8 @@
 import time
 
 import jwt
-from settings import settings
+
+from demo.settings import settings
 
 from .base import get_conn
 
