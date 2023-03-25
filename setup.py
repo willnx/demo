@@ -15,5 +15,6 @@ setup(
         "cryptography",
         "psycopg2-binary",
         "gevent",
+        "psycogreen",
     ],
 )

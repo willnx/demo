@@ -26,3 +26,6 @@ services:
       willnx/demo-app-db
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./database/postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf

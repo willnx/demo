@@ -9,6 +9,11 @@ from demo.settings import settings
 
 
 def make_app():
+    from gevent import monkey
+    from psycogreen.gevent import patch_psycopg
+
+    monkey.patch_all()
+    patch_psycopg()
     app = flask.Flask(__name__)
     app.register_blueprint(home.page)
     app.register_blueprint(login.page)
